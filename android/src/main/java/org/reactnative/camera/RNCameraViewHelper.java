@@ -14,6 +14,8 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.uimanager.UIManagerModule;
+import com.facebook.react.uimanager.UIManagerHelper;
+import com.facebook.react.uimanager.events.EventDispatcher;
 import com.google.android.cameraview.CameraView;
 import com.google.zxing.Result;
 import org.reactnative.camera.events.*;
@@ -170,7 +172,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         CameraMountErrorEvent event = CameraMountErrorEvent.obtain(view.getId(), error);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -184,7 +189,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         CameraReadyEvent event = CameraReadyEvent.obtain(view.getId());
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -198,7 +206,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         PictureSavedEvent event = PictureSavedEvent.obtain(view.getId(), response);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
 
@@ -213,7 +224,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         PictureTakenEvent event = PictureTakenEvent.obtain(view.getId());
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
      });
   }
@@ -227,7 +241,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         RecordingStartEvent event = RecordingStartEvent.obtain(view.getId(), response);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
      });
   }
@@ -239,7 +256,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         RecordingEndEvent event = RecordingEndEvent.obtain(view.getId());
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
      });
   }
@@ -251,7 +271,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         TouchEvent event = TouchEvent.obtain(view.getId(), isDoubleTap, x, y);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
 
@@ -265,7 +288,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         FacesDetectedEvent event = FacesDetectedEvent.obtain(view.getId(), data);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
      });
   }
@@ -277,7 +303,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         FaceDetectionErrorEvent event = FaceDetectionErrorEvent.obtain(view.getId(), faceDetector);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -291,7 +320,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         BarcodesDetectedEvent event = BarcodesDetectedEvent.obtain(view.getId(), barcodes, compressedImage);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -303,7 +335,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         BarcodeDetectionErrorEvent event = BarcodeDetectionErrorEvent.obtain(view.getId(), barcodeDetector);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -316,7 +351,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         BarCodeReadEvent event = BarCodeReadEvent.obtain(view.getId(), barCode, width,  height, compressedImage);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
@@ -329,7 +367,10 @@ public class RNCameraViewHelper {
       @Override
       public void run() {
         TextRecognizedEvent event = TextRecognizedEvent.obtain(view.getId(), data);
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(event);
+        EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.getId());
+        if (eventDispatcher != null) {
+          eventDispatcher.dispatchEvent(event);
+        }
       }
     });
   }
